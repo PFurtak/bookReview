@@ -31,6 +31,17 @@ class BookModel {
       console.error('ERROR: ', error);
     }
   }
+  static async getRevById(id) {
+    try {
+      const res = await db.any(`SELECT *
+      FROM reviews
+      WHERE reviews.bookid = ${id};`);
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.error('ERROR: ', error);
+    }
+  }
 }
 
 module.exports = BookModel;

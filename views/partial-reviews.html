@@ -1,0 +1,36 @@
+<a href="/"><button>Books</button></a>
+<ul>
+  ${data.map(entry => `
+  <li>${entry.author}</li>
+  <li>Category: ${entry.category}</li>
+  <li>Released: ${entry.publish_year}</li>
+  ` ).join('')}
+</ul>
+<hr />
+<h2>Reviews</h2>
+<ul>
+  ${rev.map(entry => `
+  <li><strong>Title:</strong> ${entry.revtitle}</li>
+  <li><strong>Review:</strong> ${entry.review}</li>
+
+  ` ).join('')}
+</ul>
+<hr />
+<form action="/" method="post">
+  <input type="hidden" name="bookid" value="${data[0].id}" />
+  <label
+    >Title:
+    <input type="text" name="review_title" placeholder="Review Title" />
+  </label>
+  <label
+    >My Review:
+    <textarea
+      name="review_text"
+      placeholder="My review..."
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea>
+    <button type="submit">Submit Review</button>
+  </label>
+</form>
