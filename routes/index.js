@@ -17,4 +17,12 @@ router.get('/', async function(req, res, next) {
   });
 });
 
+/* POST review to db */
+router.post('/', async function(req, res) {
+  const { bookid, review_title, review_text } = req.body;
+  const postData = await bookModel.addReview(bookid, review_title, review_text);
+  console.log(postData);
+  res.sendStatus(200);
+});
+
 module.exports = router;

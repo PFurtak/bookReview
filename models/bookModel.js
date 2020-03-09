@@ -42,6 +42,18 @@ class BookModel {
       console.error('ERROR: ', error);
     }
   }
+  static async addReview(bookid, revtitle, review) {
+    try {
+      const res = await db.one(
+        `INSERT INTO reviews (reviewerid, bookid, revtitle, review) VALUES ($1, $2, $3, $4) RETURNING id`,
+        [3, bookid, revtitle, review]
+      );
+      return res;
+    } catch (error) {
+      console.error('ERROR: ', error);
+      return error;
+    }
+  }
 }
 
 module.exports = BookModel;
