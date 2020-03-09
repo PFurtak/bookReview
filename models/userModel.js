@@ -33,6 +33,26 @@ class User {
       return error;
     }
   }
+  async loginUser() {
+    try {
+      const response = await db.one(
+        `SELECT id, first_name, last_name, password FROM users WHERE email = $1;`,
+        [this.email, this.password]
+      );
+
+      const isValid = this.checkPassword(response.password);
+
+      if (!!isValid) {
+        const { id, first_name, last_name } = response;
+        return { isValid, id, first_name, last_name };
+      } else {
+        return { isValid };
+      }
+    } catch (error) {
+      console.error('ERROR: ', error);
+      return error;
+    }
+  }
 }
 
 module.exports = User;

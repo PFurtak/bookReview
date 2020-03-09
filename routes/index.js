@@ -9,7 +9,9 @@ router.get('/', async function(req, res, next) {
   res.render('template', {
     locals: {
       title: 'Book Reviews',
-      data: data
+      data: data,
+      is_logged_in: req.session.is_logged_in,
+      first_name: req.session.first_name
     },
     partials: {
       partial: 'partial-index'
