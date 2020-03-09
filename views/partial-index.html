@@ -1,1 +1,3 @@
-testing
+${data.map(entry => `
+<p><a href="reviews/${entry.id}">${entry.title}</a></p>
+` ).join('')}
