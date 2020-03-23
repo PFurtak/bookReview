@@ -6,17 +6,7 @@ const express = require('express'),
 router.get('/', async function(req, res, next) {
   const data = await bookModel.getAllBooks();
 
-  res.render('template', {
-    locals: {
-      title: 'Book Reviews',
-      data: data,
-      is_logged_in: req.session.is_logged_in,
-      first_name: req.session.first_name
-    },
-    partials: {
-      partial: 'partial-index'
-    }
-  });
+ res.json(data)
 });
 
 /* POST review to db */
